@@ -1,3 +1,5 @@
+require "rest-client"
+require "oj"
 require_relative "gamelocker_api/abstract_parser"
 require_relative "gamelocker_api/match"
 require_relative "gamelocker_api/player"
