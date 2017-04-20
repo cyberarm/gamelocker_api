@@ -37,6 +37,10 @@ class GameLockerAPI
     request("matches", match_params)
   end
 
+  # def samples(samples_params = {})
+  #   request("samples", samples_params)
+  # end
+
   private
   def request(end_point, params = nil)
     api_headers = {
