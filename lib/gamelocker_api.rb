@@ -2,6 +2,7 @@ require "rest-client"
 require "oj"
 require_relative "gamelocker_api/abstract_parser"
 require_relative "gamelocker_api/match"
+require_relative "gamelocker_api/telemetry"
 require_relative "gamelocker_api/player"
 require_relative "gamelocker_api/roster"
 require_relative "gamelocker_api/participant"
@@ -52,10 +53,8 @@ class GameLockerAPI
         response = RestClient.get(@base_url+@region+"/"+end_point, api_headers)
       end
       @headers = response.headers
-      open(Dir.pwd+"/response.dat", "w") do |file|
-        file.write(Oj.load(response.body))
-      end
       parser(response, end_point)
+
     rescue RestClient::ExceptionWithResponse => e
       response = VirtualResponse.new(e.response, e.response)
       @headers = e.response.headers

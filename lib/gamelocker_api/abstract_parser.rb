@@ -30,12 +30,14 @@ class GameLockerAPI
           temp_match.duration = match['attributes']['duration']
           temp_match.gamemode = match['attributes']['gameMode']
           temp_match.end_game_reason = match['attributes']['stats']['endGameReason']
+          temp_match.telemetry_url = nil
           temp_match.rosters = []
           temp_match.red_team = []
           temp_match.blue_team= []
           temp_match.players = []
           temp_match.participants = []
           data['included'].each do |wanted|
+            temp_match.telemetry_url = wanted['attributes']['URL'] if wanted['type'] == "asset" && match['relationships']['assets']['data'].first['id'] == wanted['id']
             thing = nil
             if wanted['id'] == match['relationships']['rosters']['data'][0]['id']
               thing = match['relationships']['rosters']['data'][0]['id']
@@ -63,6 +65,7 @@ class GameLockerAPI
         temp_match.players = []
         temp_match.participants = []
         data['included'].each do |wanted|
+          temp_match.telemetry_url = wanted['attributes']['URL'] if wanted['type'] == "asset" && match['relationships']['assets']['data'].first['id'] == wanted['id']
           thing = nil
           if wanted['id'] == match['relationships']['rosters']['data'][0]['id']
             thing = match['relationships']['rosters']['data'][0]['id']
