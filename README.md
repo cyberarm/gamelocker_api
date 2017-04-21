@@ -53,7 +53,7 @@ Get telemetry
 ```
 Check if you're being rate limited
 ```ruby
-  response.headers[:x_ratelimit_remaining] # => 9
+  api.headers[:x_ratelimit_remaining] # => 9
 ```
 ## Supports
   * Telemetry
