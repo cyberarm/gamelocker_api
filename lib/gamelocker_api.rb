@@ -37,6 +37,10 @@ class GameLockerAPI
     request("matches", match_params)
   end
 
+  def telemetry(telemetry_url)
+    Telemetry.new(telemetry_url)
+  end
+
   # def samples(samples_params = {})
   #   request("samples", samples_params)
   # end
